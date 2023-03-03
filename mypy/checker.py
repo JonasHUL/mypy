@@ -5194,6 +5194,7 @@ class TypeChecker(NodeVisitor[None], CheckerPluginInterface):
         t = get_proper_type(t)
         if not self._is_truthy_type(t):
             return
+
         def format_expr_type() -> str:
             typ = format_type(t)
             if isinstance(expr, MemberExpr):
@@ -5208,6 +5209,7 @@ class TypeChecker(NodeVisitor[None], CheckerPluginInterface):
                 return f"Call returns {typ}"
             else:
                 return f"Expression has type {typ}"
+
         if isinstance(t, FunctionLike):
             if isinstance(expr, MemberExpr):
                 if isinstance(expr, RefExpr) and expr.fullname:
